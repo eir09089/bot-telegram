@@ -22,3 +22,11 @@ def echo(bot, update):
 
 echo_handler = MessageHandler(Filters.text, echo)
 dispatcher.add_handler(echo_handler)
+
+def extract_text(bot, update):
+    photo = update.message.photo
+    for pic in photo:
+        bot.send_message(chat_id=update.message.chat_id, text='Got an image ' + pic.file_id)
+
+photo_handler = MessageHandler(Filters.photo, extract_text)
+dispatcher.add_handler(photo_handler)
