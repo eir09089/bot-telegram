@@ -1,0 +1,1 @@
+sports = ['footbal', 'handball', 'basketball', 'volleyball', 'golf', 'cricket', 'tennis', 'esports', 'horseracing', 'greyhounds']
