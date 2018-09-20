@@ -62,6 +62,10 @@ def findEvent(text):
     if m:
         return m.group(1)
 
+    m = re.search("(?<=match)s?\:?\s*(.*\s+vs\s+.*)", text)
+    if m:
+        return m.group(1)
+
     m = re.search("(?<=evento)s?\:?\s*(.*\s+\-\s+.*)", text)
     if m:
         return m.group(1)
@@ -73,6 +77,13 @@ def findEvent(text):
     m = re.search("(.*\s+vs\s+.*)", text)
     if m:
         return m.group(0)
+
+    m = re.search("([a-z()\s]+\s+-\s+[a-z()\s]+)", text)
+    if m:
+        if len(text.split("-")) ==2:
+            return m.group(0)
+        else:
+            return None
 
     return None
 
@@ -94,7 +105,6 @@ def extractInfo(text):
         odd = checkTrigger(findOdds, odd, line)
         stake = checkTrigger(findStake, stake, line)
         event = checkTrigger(findEvent, event, line)
-        print event
 
     return sport, odd, stake, event
 
