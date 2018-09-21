@@ -38,9 +38,9 @@ class TestMethods(unittest.TestCase):
         self.assertEqual(None, findEvent('18.05.1991 - 18:00'), None)
 
     def test_combo1(self):
-        self.assertEqual(('handball', u'1.80', 6, u'ruch chorzow (w) - kpr kobierzyce (w)'), extractInfo(message2.lower()))
+        self.assertEqual(('handball', u'1.80', 6, u'ruch chorzow - kpr kobierzyce'), extractInfo(message2.lower()))
     def test_combo2(self):
-        self.assertEqual(('football', u'1.89', 1, u'sc viitorul constanta - afc hermannstadt'), extractInfo(message1.lower()))
+        self.assertEqual(('football', u'1.89', 1, u' sc viitorul constanta - afc hermannstadt'), extractInfo(message1.lower()))
 
 
 

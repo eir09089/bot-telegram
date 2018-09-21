@@ -58,23 +58,23 @@ def findSport(text):
 def findEvent(text):
     import re
 
-    m = re.search("(?<=match)s?\:?\s*(.*\s+\-\s+.*)", text)
+    m = re.search("(?<=match)s?\:?\s*([a-z()\s]+\s+-\s+[a-z()\s]+)", text)
     if m:
         return m.group(1)
 
-    m = re.search("(?<=match)s?\:?\s*(.*\s+vs\s+.*)", text)
+    m = re.search("(?<=match)s?\:?\s*([a-z()\s]+\s+vs\s+[a-z()\s]+)", text)
     if m:
         return m.group(1)
 
-    m = re.search("(?<=evento)s?\:?\s*(.*\s+\-\s+.*)", text)
+    m = re.search("(?<=evento)s?\:?\s*([a-z()\s]+\s+-\s+[a-z()\s]+)", text)
     if m:
         return m.group(1)
 
-    m = re.search("(?<=evento)\:?\s*(.*\s+vs\s+.*)", text)
+    m = re.search("(?<=evento)\:?\s*([a-z()\s]+\s+vs\s+[a-z()\s]+)", text)
     if m:
         return m.group(1)
 
-    m = re.search("(.*\s+vs\s+.*)", text)
+    m = re.search("([a-z()\s]+\s+vs\s+[a-z()\s]+)", text)
     if m:
         return m.group(0)
 
@@ -101,13 +101,10 @@ def extractInfo(text):
     bet = None
 
     for line in listOfSentences:
-        print line
-
         sport = checkTrigger(findSport, sport, line)
         odd = checkTrigger(findOdds, odd, line)
         stake = checkTrigger(findStake, stake, line)
         event = checkTrigger(findEvent, event, line)
-        print sport, odd, stake, event
     return sport, odd, stake, event
 
 
