@@ -101,11 +101,13 @@ def extractInfo(text):
     bet = None
 
     for line in listOfSentences:
+        print line
+
         sport = checkTrigger(findSport, sport, line)
         odd = checkTrigger(findOdds, odd, line)
         stake = checkTrigger(findStake, stake, line)
         event = checkTrigger(findEvent, event, line)
-
+        print sport, odd, stake, event
     return sport, odd, stake, event
 
 

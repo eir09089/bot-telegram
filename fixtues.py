@@ -8,4 +8,4 @@ SPORT: HANDBALL \
 LEAGUE:POLAND: SuperLiga (W) \
 MATCH: Ruch Chorzow (W) - KPR Kobierzyce (W) \
 PICK: KPR Kobierzyce (W) -3.5 \
-ODD: 1.80 Bet365'
+ODD: 1.80 Bet365 Stake: 6/10'
