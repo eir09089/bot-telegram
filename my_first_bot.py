@@ -49,9 +49,9 @@ updater.start_polling()
 
 def echo(bot, update):
     answer = extractInfo(update.message.text)
-    # print formatResponse(answer)
-    sendEmail(answer)
-    bot.send_message(chat_id=update.message.chat_id, text=answer)
+    if answer:
+        sendEmail(answer)
+    # bot.send_message(chat_id=update.message.chat_id, text=answer)
 
 echo_handler = MessageHandler(Filters.text, echo)
 dispatcher.add_handler(echo_handler)
