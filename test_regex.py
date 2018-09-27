@@ -1,4 +1,6 @@
+# -*- coding: utf-8 -*-
 from entities import *
+import unidecode
 teams = []
 
 def findStake(text):
@@ -193,6 +195,8 @@ def extractInfo(processedText):
 
 def prerpocess(text):
     import re
+    import string
+    printable = set(string.printable)
     lines = []
     for line in text:
         newLine = re.sub("(pinnacle)", '',line)
@@ -201,15 +205,12 @@ def prerpocess(text):
         newLine = re.sub("(maps handicap)", '', newLine)
         newLine = newLine.strip()
         if newLine:
+            newLine = unidecode.unidecode(newLine)
             lines.append(newLine)
     return lines
 
 if __name__ == "__main__":
     import sys
     text = sys.argv[1]
-    # listOfSentences = text.lower().splitlines()
-    # processedText = prerpocess(listOfSentences)
     res = extractInfo(text)
-    # res = findEvent(text.lower())
     print res
-    # print sports

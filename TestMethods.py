@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from test_regex import *
 from fixtues import *
 
@@ -47,7 +48,7 @@ class TestMethods(unittest.TestCase):
 
 
     def test_combo1(self):
-        self.assertEqual(('handball', u'1.80', 6, u'ruch chorzow - kpr kobierzyce', 'kpr kobierzyce (w) -3.5'), extractInfo(message2.lower()))
+        self.assertEqual(('handball', u'1.80', 6, u'ruch chorzow - kpr kobierzyce', u'kpr kobierzyce (w) -3.5'), extractInfo(message2.lower()))
     def test_combo2(self):
         self.assertEqual(('football', u'1.89', 1, u'sc viitorul constanta - afc hermannstadt', u'over 1.75'), extractInfo(message1.lower()))
 
