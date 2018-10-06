@@ -189,6 +189,8 @@ def extractInfo(processedText):
     for line in auxListSEvent:
         bet, text = checkTrigger(findBet, bet, line)
         # auxListBet.append(text)
+
+    print sport, odd, stake, event, bet
     if sport and odd and stake and event and bet:
         return sport, odd, stake, event, bet
     else:

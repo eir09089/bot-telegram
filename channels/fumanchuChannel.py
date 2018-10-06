@@ -54,13 +54,13 @@ def findOdds(text):
     #     if int(stake) < 11:
     #         return int(stake)
 
-def findSport(text):
-    for sport in sports:
-        if sport in text:
-
-            return sport, text.strip()
-    return None, text
-# def findBet(text):
+# def findSport(text):
+#     for sport in sports:
+#         if sport in text:
+#
+#             return sport, text.strip()
+#     return None, text
+# # def findBet(text):
 
 
 def findEvent(text):
@@ -148,26 +148,17 @@ def checkTrigger(myFunc, args, text):
 def extractInfo(processedText):
     import re
     listOfSentences = prerpocess(processedText.lower().splitlines())
-    sport = None
+    sport = 'football'
     odd = None
     stake = None
     event = None
     bet = None
-    auxListSport = []
     auxListOdd = []
     auxListStake = []
     auxListSEvent = []
 
-    for line in listOfSentences:
-        sport, text = checkTrigger(findSport, sport, line)
-        if sport is None:
-            auxListSport.append(line)
-        else:
-            newLine = re.sub(sport, '', line)
-            if newLine:
-                auxListSport.append(newLine)
 
-    for line in auxListSport:
+    for line in listOfSentences:
         odd, text = checkTrigger(findOdds, odd, line)
         if text:
             auxListOdd.append(text)
@@ -205,8 +196,8 @@ def prerpocess(text):
     for line in text:
         newLine = re.sub("(pinnacle)", '',line)
         newLine = re.sub("(bet365)", '', newLine)
-        # newLine = re.sub("(maps handicap)", '', newLine)
-        # newLine = re.sub("(maps handicap)", '', newLine)
+        newLine = re.sub("(maps handicap)", '', newLine)
+        newLine = re.sub("(maps handicap)", '', newLine)
         newLine = newLine.strip()
         if newLine:
             newLine = unidecode.unidecode(newLine)
