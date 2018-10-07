@@ -110,9 +110,10 @@ def findEvent(text):
 
 def findBet(text):
     import re
-    m = re.search("(?<=pick)\:\s*(.*)", text)
+
+    m = re.search("(?<=pick)\s*\:\s*(.*)", text)
     if m:
-        z = re.sub("(pick)\:\s*(.*)",'', text)
+        z = re.sub("(pick)\s*\:\s*(.*)",'', text)
         return m.group(1), z.strip()
 
     m = re.search("(?<=pronostico)\:\s*(.*)", text)
@@ -129,6 +130,17 @@ def findBet(text):
     if m:
         z = re.sub("(under\s*-?[0-9]+.?[0-9]*)",'', text)
         return m.group(0), z.strip()
+
+    m = re.search("(home\s*\+?[0-9]+.?[0-9]*)", text)
+    if m:
+        z = re.sub("(home\s*\+?[0-9]+.?[0-9]*)", '', text)
+        return m.group(0), z.strip()
+    m = re.search("(away\s*\+?[0-9]+.?[0-9]*)", text)
+
+    if m:
+        z = re.sub("(away\s*\+?[0-9]+.?[0-9]*)", '', text)
+        return m.group(0), z.strip()
+
 
     m = re.search("[a-z]+\s(win(s?)\s*)", text)
     if m:
@@ -191,6 +203,8 @@ def extractInfo(processedText):
         # auxListBet.append(text)
 
     print(sport, odd, stake, event, bet)
+    if odd is None:
+        odd = 1.00
     if sport and odd and stake and event and bet:
         return sport, odd, stake, event, bet
     else:
@@ -205,8 +219,8 @@ def prerpocess(text):
     for line in text:
         newLine = re.sub("(pinnacle)", '',line)
         newLine = re.sub("(bet365)", '', newLine)
-        # newLine = re.sub("(maps handicap)", '', newLine)
-        # newLine = re.sub("(maps handicap)", '', newLine)
+        newLine = re.sub("(maps handicap)", '', newLine)
+        newLine = re.sub("(maps handicap)", '', newLine)
         newLine = newLine.strip()
         if newLine:
             newLine = unidecode.unidecode(newLine)
