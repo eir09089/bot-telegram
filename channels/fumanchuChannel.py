@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from entities import *
+
+# channel id
 import unidecode
 teams = []
 
